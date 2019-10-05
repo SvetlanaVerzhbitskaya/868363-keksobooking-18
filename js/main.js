@@ -20,7 +20,7 @@ var getRandomNumber = function (arr) {
 }
 
 var getImageAddress = function (arr) {
-  imageAddress = `img/avatars/user0${getRandomNumber(arr)}.png`;
+  imageAddress = 'img/avatars/user0' + getRandomNumber(arr) +'.png';
   for (var i = 0; i < arr.length ; i++) {
     if (number === arr[i]) {
       arr.splice(i, 1);
