@@ -17,21 +17,21 @@ var MAX_Y = 630;
 var getRandomNumber = function (arr) {
   number = arr[Math.floor(Math.random() * arr.length)];
   return number;
-}
+};
 
 var getImageAddress = function (arr) {
-  imageAddress = 'img/avatars/user0' + getRandomNumber(arr) +'.png';
-  for (var i = 0; i < arr.length ; i++) {
+  imageAddress = 'img/avatars/user0' + getRandomNumber(arr) + '.png';
+  for (var i = 0; i < arr.length; i++) {
     if (number === arr[i]) {
       arr.splice(i, 1);
     }
-  };
+  }
   return imageAddress;
-}
+};
 
 var getRandomCoordinate = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
+};
 
 var getNeighbours = function (arr) {
   for (var i = 0; i < arrLength; i++) {
@@ -57,7 +57,7 @@ var getNeighbours = function (arr) {
         y: getRandomCoordinate(MIN_Y, MAX_Y)
       }
     };
-  };
+  }
 
   return arr;
 };
@@ -80,7 +80,7 @@ var renderPin = function (pin) {
   pinElement.querySelector('img').setAttribute('alt', pin.offer.title);
 
   return pinElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 
@@ -89,6 +89,6 @@ var createPin = function (arr) {
     fragment.appendChild(renderPin(arr[i]));
   }
   similarPinElement.appendChild(fragment);
-}
+};
 
 createPin(neighbours);
