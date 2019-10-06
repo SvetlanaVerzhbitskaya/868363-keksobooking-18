@@ -1,11 +1,11 @@
 'use strict';
 var neighbours = [];
-var arrLength = 8;
+var ARR_LENGTH = 8;
 var IMAGES_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8];
-var number;
-var imageAddress;
+var numbers =[];
+var imageAddress = '';
 var PRICE_VALUE = 150;
-var TYPE_LIST = ['palace', 'flat', 'house', 'bungalo'];
+var typeVariants = ['palace', 'flat', 'house', 'bungalo'];
 var ROOMS_AMOUNT = 2;
 var GUESTS_AMOUNT = 3;
 var CHECK_IN_OUT = ['12:00', '13:00', '14:00'];
@@ -13,16 +13,21 @@ var MIN_X = 100;
 var MAX_X = 660;
 var MIN_Y = 130;
 var MAX_Y = 630;
+var similarPinElement = document.querySelector('.map__pins');
+var similarPinTemplate = document.querySelector('#pin')
+  .content
+  .querySelector('.map__pin');
+var fragment = document.createDocumentFragment();
 
 var getRandomNumber = function (arr) {
-  number = arr[Math.floor(Math.random() * arr.length)];
-  return number;
+  numbers = arr[Math.floor(Math.random() * arr.length)];
+  return numbers;
 };
 
 var getImageAddress = function (arr) {
   imageAddress = 'img/avatars/user0' + getRandomNumber(arr) + '.png';
   for (var i = 0; i < arr.length; i++) {
-    if (number === arr[i]) {
+    if (numbers === arr[i]) {
       arr.splice(i, 1);
     }
   }
@@ -34,7 +39,7 @@ var getRandomCoordinate = function (min, max) {
 };
 
 var getNeighbours = function (arr) {
-  for (var i = 0; i < arrLength; i++) {
+  for (var i = 0; i < ARR_LENGTH; i++) {
     arr[i] = {
       author: {
         avatar: getImageAddress(IMAGES_NUMBERS)
@@ -43,7 +48,7 @@ var getNeighbours = function (arr) {
         title: 'Лучшее предложение',
         address: '600, 350',
         price: PRICE_VALUE,
-        type: getRandomNumber(TYPE_LIST),
+        type: getRandomNumber(typeVariants),
         rooms: ROOMS_AMOUNT,
         guests: GUESTS_AMOUNT,
         checkin: getRandomNumber(CHECK_IN_OUT),
@@ -66,11 +71,6 @@ getNeighbours(neighbours);
 
 document.querySelector('.map').classList.remove('map--faded');
 
-var similarPinElement = document.querySelector('.map__pins');
-var similarPinTemplate = document.querySelector('#pin')
-  .content
-  .querySelector('.map__pin');
-
 var renderPin = function (pin) {
   var pinElement = similarPinTemplate.cloneNode(true);
 
@@ -81,8 +81,6 @@ var renderPin = function (pin) {
 
   return pinElement;
 };
-
-var fragment = document.createDocumentFragment();
 
 var createPin = function (arr) {
   for (var i = 0; i < arr.length; i++) {
