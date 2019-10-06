@@ -1,14 +1,14 @@
 'use strict';
 var neighbours = [];
 var ARR_LENGTH = 8;
-var IMAGES_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8];
-var numbers =[];
+var imagesNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+var numbers = [];
 var imageAddress = '';
 var PRICE_VALUE = 150;
 var typeVariants = ['palace', 'flat', 'house', 'bungalo'];
 var ROOMS_AMOUNT = 2;
 var GUESTS_AMOUNT = 3;
-var CHECK_IN_OUT = ['12:00', '13:00', '14:00'];
+var chekInOutVariants = ['12:00', '13:00', '14:00'];
 var MIN_X = 100;
 var MAX_X = 660;
 var MIN_Y = 130;
@@ -42,7 +42,7 @@ var getNeighbours = function (arr) {
   for (var i = 0; i < ARR_LENGTH; i++) {
     arr[i] = {
       author: {
-        avatar: getImageAddress(IMAGES_NUMBERS)
+        avatar: getImageAddress(imagesNumbers)
       },
       offer: {
         title: 'Лучшее предложение',
@@ -51,8 +51,8 @@ var getNeighbours = function (arr) {
         type: getRandomNumber(typeVariants),
         rooms: ROOMS_AMOUNT,
         guests: GUESTS_AMOUNT,
-        checkin: getRandomNumber(CHECK_IN_OUT),
-        checkout: getRandomNumber(CHECK_IN_OUT),
+        checkin: getRandomNumber(chekInOutVariants),
+        checkout: getRandomNumber(chekInOutVariants),
         features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
         description: 'Описание',
         photos: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg']
