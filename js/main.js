@@ -28,6 +28,7 @@ var setupForm = document.querySelector('.ad-form').querySelectorAll('fieldset');
 var setupFilters = document.querySelector('.map__filters').querySelectorAll('fieldset');
 var setupActive = document.querySelector('.map__pin--main');
 var setup = document.querySelector('.map');
+var address = document.querySelector('input[id="address"]');
 
 var getRandomNumber = function (arr) {
   numbers = arr[Math.floor(Math.random() * arr.length)];
@@ -98,11 +99,10 @@ var createPin = function (arr) {
 
 createPin(neighbours);
 
-
-var address = document.querySelector('input[id="address"]');
 var writeAddress = function (x, y) {
   address.setAttribute('value', x + ', ' + y);
-}
+};
+
 var addAddressInactive = function (left, top, width, height) {
   writeAddress(Math.round(left + width / 2), Math.round(top + height / 2));
 };
@@ -123,7 +123,7 @@ var makeFormActive = function (arr) {
   for (var i = 0; i < arr.length; i++) {
     arr[i].removeAttribute('disabled');
   }
-}
+};
 
 makeFormDisabled(setupForm);
 makeFormDisabled(setupFilters);
@@ -135,11 +135,11 @@ var activateMap = function () {
   addAddressActive(PIN_LEFT, PIN_TOP, PIN_WIDTH_INACTIVE, PIN_HEIGHT_INACTIVE, PIN_TRIANGLE_HEIGHT);
 };
 
-setupActive.addEventListener('click', function() {
+setupActive.addEventListener('click', function () {
   activateMap();
 });
 
-setupActive.addEventListener('keydown', function() {
+setupActive.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     activateMap();
   }
@@ -147,15 +147,13 @@ setupActive.addEventListener('keydown', function() {
 
 var rooms = document.querySelector('select[name="rooms"]');
 var roomsAmount;
-rooms.addEventListener('click', function() {
+rooms.addEventListener('click', function () {
   var roomsNumber = document.querySelector('select[name="rooms"]').selectedIndex;
   roomsAmount = document.querySelector('select[name="rooms"]').options[roomsNumber].text;
-  console.log(roomsAmount);
-  return roomsAmount;
 });
 
 var guests = document.querySelector('select[name="capacity"]');
-guests.addEventListener('click', function() {
+guests.addEventListener('click', function () {
   var guestsNumber = document.querySelector('select[name="capacity"]').selectedIndex;
   var guestsAmount = document.querySelector('select[name="capacity"]').options[guestsNumber].text;
 
