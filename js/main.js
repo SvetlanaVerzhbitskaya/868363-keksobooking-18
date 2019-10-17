@@ -6,6 +6,8 @@ var numbers = [];
 var imageAddress = '';
 var PRICE_VALUE = 150;
 var typeVariants = ['palace', 'flat', 'house', 'bungalo'];
+var featuresVariants = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var photosVariants = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 var ROOMS_AMOUNT = 2;
 var GUESTS_AMOUNT = 3;
 var chekInOutVariants = ['12:00', '13:00', '14:00'];
@@ -64,9 +66,9 @@ var getNeighbours = function (arr) {
         guests: GUESTS_AMOUNT,
         checkin: getRandomNumber(chekInOutVariants),
         checkout: getRandomNumber(chekInOutVariants),
-        features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
+        features: getRandomNumber(featuresVariants),
         description: 'Описание',
-        photos: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg']
+        photos: getRandomNumber(photosVariants)
       },
       location: {
         x: getRandomCoordinate(MIN_X, MAX_X),
@@ -146,7 +148,7 @@ setupActive.addEventListener('keydown', function (evt) {
 });
 
 var rooms = document.querySelector('select[name="rooms"]');
-var roomsAmount;
+var roomsAmount = '';
 rooms.addEventListener('click', function () {
   var roomsNumber = document.querySelector('select[name="rooms"]').selectedIndex;
   roomsAmount = document.querySelector('select[name="rooms"]').options[roomsNumber].text;
