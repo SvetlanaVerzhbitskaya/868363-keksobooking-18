@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-  var ENTER_KEYCODE = 13;
   var PIN_WIDTH_INACTIVE = 65;
   var PIN_HEIGHT_INACTIVE = 65;
   var PIN_TRIANGLE_HEIGHT = 22;
