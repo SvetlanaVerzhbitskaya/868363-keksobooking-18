@@ -97,7 +97,7 @@
     if (arr.offer.type === 'flat') {
       arr.offer.type = 'Квартира';
     } else if (arr.offer.type === 'bungalo') {
-      arr.offer.type = 'Бунгало'
+      arr.offer.type = 'Бунгало';
     } else if (arr.offer.type === 'house') {
       arr.offer.type = 'Дом';
     } else if (arr.offer.type === 'palace') {
@@ -105,18 +105,6 @@
     }
     return (arr.offer.type);
   };
-
-  var createPhotosList = function () {
-    for (var i = 0; i < arr.length; i++) {
-      // <img src="" class="popup__photo" width="45" height="40" alt="Фотография жилья">
-    }
-  };
-
-  var renderPhoto = function () {
-    var photoElement = similarPhotoTemplate.cloneNode(true);
-
-    return(photoElement);
-  }
 
   var renderCard = function (card) {
     var cardElement = similarCardTemplate.cloneNode(true);
@@ -133,13 +121,12 @@
     cardElement.querySelector('.popup__avatar').setAttribute('src', card.author.avatar);
 
     return cardElement;
-  }
+  };
 
   var createPin = function (arr) {
     for (var i = 0; i < arr.length; i++) {
       fragment.appendChild(renderPin(arr[i]));
       fragment.appendChild(renderCard(arr[i]));
-      console.log(arr[i]);
     }
     similarPinElement.appendChild(fragment);
   };
