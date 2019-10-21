@@ -21,7 +21,17 @@
   var similarPinTemplate = document.querySelector('#pin')
     .content
     .querySelector('.map__pin');
+  var similarCardTemplate = document.querySelector('#card')
+    .content
+    .querySelector('.map__card');
   var fragment = document.createDocumentFragment();
+
+
+  // var similarPhotoElement = document.querySelector('.map__card');
+  // var similarPhotoTemplate = document.querySelector('.popup__photos')
+  //   .content
+  //   .querySelector('.popup__photo');
+
 
   var getRandomNumber = function (arr) {
     numbers = arr[Math.floor(Math.random() * arr.length)];
@@ -83,12 +93,50 @@
     return pinElement;
   };
 
+  var getRussianType = function (arr) {
+    if (arr.offer.type === 'flat') {
+      arr.offer.type = 'Квартира';
+    } else if (arr.offer.type === 'bungalo') {
+      arr.offer.type = 'Бунгало';
+    } else if (arr.offer.type === 'house') {
+      arr.offer.type = 'Дом';
+    } else if (arr.offer.type === 'palace') {
+      arr.offer.type = 'Дворец';
+    }
+    return (arr.offer.type);
+  };
+
+  var renderCard = function (card) {
+    var cardElement = similarCardTemplate.cloneNode(true);
+
+    cardElement.querySelector('.popup__title').textContent = card.offer.title;
+    cardElement.querySelector('.popup__text--address').textContent = card.offer.address;
+    cardElement.querySelector('.popup__text--price').textContent = card.offer.price + '₽/ночь';
+    cardElement.querySelector('.popup__type').textContent = getRussianType(card);
+    cardElement.querySelector('.popup__text--capacity').textContent = card.offer.rooms + ' комнаты для ' + card.offer.guests + ' гостей';
+    cardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + card.offer.checkin + ', выезд до ' + card.offer.checkout;
+    cardElement.querySelector('.popup__features li').textContent = card.offer.features;
+    cardElement.querySelector('.popup__description').textContent = card.offer.description;
+    cardElement.querySelector('.popup__photos').querySelector('img').setAttribute('src', card.offer.photos);
+    cardElement.querySelector('.popup__avatar').setAttribute('src', card.author.avatar);
+
+    return cardElement;
+  };
+
   var createPin = function (arr) {
     for (var i = 0; i < arr.length; i++) {
       fragment.appendChild(renderPin(arr[i]));
+      fragment.appendChild(renderCard(arr[i]));
     }
     similarPinElement.appendChild(fragment);
   };
 
   createPin(neighbours);
+
+
+  // var createCard = function () {
+  //   for (var i = 0; i < arr.length; i++) {
+  //     fragment.appendChild(renderCard(arr[i]))
+  //   }
+  // }
 })();
